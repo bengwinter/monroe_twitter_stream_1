@@ -1,15 +1,15 @@
 class CreateTweets < ActiveRecord::Migration
   def change
     create_table :tweets do |t|
-      t.string :text
-      t.string :user
+      t.text :text
+      t.text :user
       t.integer :retweet_count
       t.integer :favorites_count
-      t.string :twitter_id
+      t.text :twitter_id
       t.datetime :tweet_created_at
-      t.string :retweet_status
-      t.string :geo_coordinates
-      t.string :place_coordinates
+      t.text :retweet_status
+      t.text :geo_coordinates, array: true, default: []
+      t.text :place_coordinates, array: true, default: []
       t.timestamps
     end
   end
