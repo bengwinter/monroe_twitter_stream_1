@@ -10,7 +10,9 @@ class Tweet < ActiveRecord::Base
       place_value = tweet.place.class != Twitter::NullObject ? tweet.place[:place] : nil
       retweet_id = tweet.retweet.class != Twitter::NullObject ? tweet.retweet.id : nil
       clean_text = tweet.full_text.to_s.gsub(/["']/, "")
-      Tweet.create(text: clean_text, user: tweet.user.screen_name.to_s, retweet_count: tweet.retweet_count.to_i, favorites_count: tweet.favorites_count.to_i, tweet_created_at: tweet.created_at, twitter_id: tweet.id.to_s, geo_coordinates: geo_value, place_coordinates: place_value, retweet_status: retweet_id)
+      x = Tweet.create(text: clean_text, user: tweet.user.screen_name.to_s, retweet_count: tweet.retweet_count.to_i, favorites_count: tweet.favorites_count.to_i, tweet_created_at: tweet.created_at, twitter_id: tweet.id.to_s, retweet_status: retweet_id)
+      x.geo_coordinates = geo_value
+      x.place_coordinates = place_value
     end
   end
 
