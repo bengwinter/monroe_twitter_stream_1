@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126163402) do
+ActiveRecord::Schema.define(version: 20131204013023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 20131126163402) do
     t.string   "twitter_id"
     t.datetime "tweet_created_at"
     t.string   "retweet_status"
-    t.string   "geo_coordinates"
-    t.string   "place_coordinates"
+    t.string   "geo_coordinates",   default: "--- []\n"
+    t.string   "place_coordinates", default: "--- []\n"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-  
+
 end

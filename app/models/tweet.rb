@@ -4,14 +4,13 @@ class Tweet < ActiveRecord::Base
   end
 
   def self.tweet_streaming(hash)
-     search_params = hash[:one]
+    search_params = hash[:one]
     $twitter_client.filter(track: search_params.join(","), language: "en") do |tweet|
-      puts tweet.text
-      # geo_value = tweet.geo.class != Twitter::NullObject ? tweet.geo[:coordinates] : nil
-      # place_value = tweet.place.class != Twitter::NullObject ? tweet.place[:place] : nil
-      # retweet_id = tweet.retweet.class != Twitter::NullObject ? tweet.retweet.id : nil
-      # clean_text = tweet.full_text.to_s.gsub(/["']/, "")
-      # Tweet.create(text: clean_text, user: tweet.user.screen_name.to_s, retweet_count: tweet.retweet_count.to_i, favorites_count: tweet.favorites_count.to_i, tweet_created_at: tweet.created_at, twitter_id: tweet.id.to_s, geo_coordinates: geo_value, place_coordinates: place_value, retweet_status: retweet_id)
+      geo_value = (tweet.geo.class != Twitter::NullObject) ? tweet.geo[:coordinates] : nil
+      place_value = tweet.place.class != Twitter::NullObject ? tweet.place[:place] : nil
+      retweet_id = tweet.retweet.class != Twitter::NullObject ? tweet.retweet.id : nil
+      clean_text = tweet.full_text.to_s.gsub(/["']/, "")
+      Tweet.create(text: clean_text, user: tweet.user.screen_name.to_s, retweet_count: tweet.retweet_count.to_i, favorites_count: tweet.favorites_count.to_i, tweet_created_at: tweet.created_at, twitter_id: tweet.id.to_s, geo_coordinates: geo_value, place_coordinates: place_value, retweet_status: retweet_id)
     end
   end
 
