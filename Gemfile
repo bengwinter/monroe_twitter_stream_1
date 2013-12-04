@@ -23,6 +23,10 @@ gem 'dotenv-rails'
 # pry for debugging
 gem 'pry-rails'
 
+#for unicorn server
+gem 'unicorn'
+
+
 # require twitter for retrieving tweet data
 gem 'twitter', github: 'sferik/twitter'
 
