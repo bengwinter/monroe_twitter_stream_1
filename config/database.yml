@@ -50,5 +50,9 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: monroe_twitter_1_production
-  pool: 5
+  database: monroe_twitter
+  pool: 10
+  username: ENV['RDS_USER']
+  password: ENV['RDS_PASSWORD']
+  host: monroe-twitter.cgxgyyplpvvh.us-east-1.rds.amazonaws.com
+  port: 5432
